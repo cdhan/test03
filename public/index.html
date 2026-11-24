@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>최근 날씨 확인</title>
+  <meta name="description" content="기상청 단기예보로 서울·대전의 날짜·시간대별 날씨를 확인하는 서비스">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⛅</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="app-header">
+      <h1>최근 날씨 확인</h1>
+      <p>기상청 단기예보로 서울·대전의 날씨를 원하는 날짜와 시간대로 확인해요.</p>
+    </header>
+
+    <form id="form" class="card form" novalidate>
+      <fieldset class="field">
+        <legend>지역</legend>
+        <div class="segmented">
+          <label><input type="radio" name="region" value="seoul" checked><span>서울</span></label>
+          <label><input type="radio" name="region" value="daejeon"><span>대전</span></label>
+        </div>
+      </fieldset>
+
+      <div class="field">
+        <label class="field-label" for="date">기준 날짜</label>
+        <input type="date" id="date" name="date" required>
+        <p class="hint" id="date-hint">기상청 단기예보는 최근 3일간 발표된 자료만 제공해서, 오늘을 포함한 최근 3일 중에서 고를 수 있어요.</p>
+      </div>
+
+      <fieldset class="field">
+        <legend>언제 날씨가 궁금한가요?</legend>
+        <div class="segmented days">
+          <label><input type="radio" name="day" value="0" checked><span><strong>오늘</strong><small data-offset="0"></small></span></label>
+          <label><input type="radio" name="day" value="1"><span><strong>내일</strong><small data-offset="1"></small></span></label>
+          <label><input type="radio" name="day" value="2"><span><strong>모레</strong><small data-offset="2"></small></span></label>
+        </div>
+      </fieldset>
+
+      <div class="field">
+        <label class="field-label" for="hour">시간대</label>
+        <select id="hour" name="hour"></select>
+      </div>
+
+      <button type="submit" class="primary" id="submit">날씨 확인하기</button>
+    </form>
+
+    <section id="result" class="result" aria-live="polite">
+      <p class="placeholder">지역·날짜·시간대를 고른 뒤 <strong>날씨 확인하기</strong>를 눌러 주세요.</p>
+    </section>
+
+    <footer class="app-footer">자료: 기상청 단기예보 조회서비스 (공공데이터포털)</footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
